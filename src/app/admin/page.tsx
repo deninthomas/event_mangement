@@ -34,7 +34,19 @@ export default function AdminDashboard() {
 
   return (
     <div className="container mx-auto p-4 space-y-8">
-      <h1 className="text-3xl font-bold text-red-400 border-b border-red-500/30 pb-4">Admin Dashboard</h1>
+      <div className="flex justify-between items-center border-b border-red-500/30 pb-4">
+        <h1 className="text-3xl font-bold text-red-400">Admin Dashboard</h1>
+        <button 
+          onClick={() => {
+            localStorage.removeItem('token');
+            document.cookie = "session_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.href = '/';
+          }} 
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-lg"
+        >
+          Logout
+        </button>
+      </div>
       
       <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-slate-800 p-6 rounded-lg shadow-lg border border-slate-700">

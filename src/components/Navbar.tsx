@@ -44,8 +44,8 @@ export default function Navbar() {
               {isAdmin && (
                 <Link href="/admin" className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400 hover:opacity-80 transition-opacity">Admin Dashboard</Link>
               )}
-              <button onClick={handleLogout} className="text-sm font-medium px-5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all hover:scale-105">
-                Sign Out
+              <button onClick={handleLogout} className="text-sm font-bold px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white shadow-lg transition-all hover:scale-105">
+                Logout
               </button>
             </>
           ) : (
