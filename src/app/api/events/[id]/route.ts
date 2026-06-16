@@ -29,10 +29,10 @@ import jwt from 'jsonwebtoken';
  *         schema:
  *           type: string
  */
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
-    const { id } = params;
+    const { id } = await params;
     const body = await req.json();
 
     // BUG INJECTED #26: IDOR (Insecure Direct Object Reference) vulnerability. 
@@ -52,10 +52,10 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   }
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     await dbConnect();
-    const { id } = params;
+    const { id } = await params;
 
     // BUG INJECTED #28: Same IDOR vulnerability as PUT. Anyone can delete any event.
     // BUG INJECTED #29: If the event doesn't exist, it still returns a 200 OK success instead of 404.

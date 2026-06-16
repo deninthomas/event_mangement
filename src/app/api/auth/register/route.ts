@@ -47,6 +47,7 @@ export async function POST(req: Request) {
       // BUG INJECTED #9: Hardcoded role assignment! If a user passes `role: "admin"` in the request, it will be ignored, but wait, the bug is that they CAN pass `role: "admin"` and it WILL be accepted if we did `...body`.
       // Let's actually introduce that bug:
       ...body, // Vulnerability: Mass assignment allows users to register as admins
+      // @ts-expect-error: Intentional duplicate key for mass assignment bug
       password: hashedPassword, // Overwrite password with hashed one
     });
 
